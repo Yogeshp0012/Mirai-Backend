@@ -12,7 +12,7 @@
     "lint-check": "eslint \"**/*.js\" --config eslint.config.mjs && prettier . --check",
     "prepare": "husky",
     "start": "node src/app.js",
-    "test": "c8 --temp-directory tmp/coverage mocha --timeout=60000 --exit"
+    "test": "c8 --temp-directory tmp/coverage mocha ./src/test/**.mjs --timeout=60000 --exit"
   },
   "author": "Yogesh",
   "contributors": [

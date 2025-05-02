@@ -22,7 +22,6 @@ export default [
         ...globals.mocha,
       },
     },
-
     rules: {
       'consistent-return': 0,
       'no-param-reassign': 0,

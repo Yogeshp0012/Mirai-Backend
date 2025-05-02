@@ -1,12 +1,14 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
+import { morganLogger } from './config/morgan';
 
 dotenv.config({ path: '.env.example' });
 
 const app = express();
+app.use(morganLogger());
 app.set('port', process.env.PORT || 8080);
 app.get('/hello', (req, res) => {
-  res.send('Hello World');
+  res.send('Hello World').status(200);
 });
 
 app.listen(app.get('port'), () => {

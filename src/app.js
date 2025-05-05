@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { morganLogger } from './config/morgan.js';
 import registerUser from './controllers/userController.js';
+import passport from './config/passport.js';
 
 dotenv.config({ path: '.env.example' });
 
@@ -20,6 +21,7 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(morganLogger());
+app.use(passport.initialize());
 app.set('port', process.env.PORT || 8080);
 app.post('/register', registerUser);
 

@@ -2,22 +2,31 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { morganLogger } from './config/morgan';
+import userRoutes from './routes/userRoutes';
 
 dotenv.config({ path: '.env.example' });
 
-mongoose.connect(process.env.MONGODB_URI);
-mongoose.connection.on('error', (err) => {
-  console.error(err);
-  console.log('MongoDB connection error. Please make sure MongoDB is running.');
-  process.exit(1);
-});
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection failed:', error.message);
+    process.exit(1);
+  }
+};
+connectDB();
 
 const app = express();
+app.use(express.json());
 app.use(morganLogger());
 app.set('port', process.env.PORT || 8080);
 app.get('/hello', (req, res) => {
   res.send('Hello World').status(200);
 });
+
+// todo : protect the route
+app.use('/auth', userRoutes);
 
 app.listen(app.get('port'), () => {
   const { BASE_URL } = process.env;

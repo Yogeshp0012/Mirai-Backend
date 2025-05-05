@@ -1,5 +1,6 @@
 import argon2 from 'argon2';
-import User from '../models/userSchema';
+import validator from 'validator';
+import User from '../models/userSchema.js';
 
 // register user
 const registerUser = async (req, res) => {
@@ -18,6 +19,9 @@ const registerUser = async (req, res) => {
   } = req.body;
 
   try {
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: 'Invalid Email.' });
+    }
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'Email is already registered.' });

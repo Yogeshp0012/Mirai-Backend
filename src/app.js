@@ -1,8 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { morganLogger } from './config/morgan';
-import userRoutes from './routes/userRoutes';
+import { morganLogger } from './config/morgan.js';
+import registerUser from './controllers/userController.js';
 
 dotenv.config({ path: '.env.example' });
 
@@ -21,12 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(morganLogger());
 app.set('port', process.env.PORT || 8080);
-app.get('/hello', (req, res) => {
-  res.send('Hello World').status(200);
-});
-
-// todo : protect the route
-app.use('/auth', userRoutes);
+app.post('/register', registerUser);
 
 app.listen(app.get('port'), () => {
   const { BASE_URL } = process.env;

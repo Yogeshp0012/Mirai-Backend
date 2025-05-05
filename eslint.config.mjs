@@ -32,6 +32,7 @@ export default [
       'no-unused-expressions': 0,
       'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
       'chai-friendly/no-unused-expressions': 2,
+      'import/extensions': 0,
     },
   },
 ];

@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { morganLogger } from './config/morgan';
+import { morganLogger } from './config/morgan.js';
 
 dotenv.config({ path: '.env.example' });
 

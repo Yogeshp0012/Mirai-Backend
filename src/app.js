@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 import { morganLogger } from './config/morgan.js';
 import registerUser from './controllers/userController.js';
 import passport from './config/passport.js';
+import {
+  verifyMagicLink,
+  requestMagicLink,
+} from './controllers/magicLinkController.js';
 
 dotenv.config({ path: '.env.example' });
 
@@ -24,6 +28,9 @@ app.use(morganLogger());
 app.use(passport.initialize());
 app.set('port', process.env.PORT || 8080);
 app.post('/register', registerUser);
+
+app.post('/auth/magic-link', requestMagicLink);
+app.get('/auth/verify-magic', verifyMagicLink);
 
 app.listen(app.get('port'), () => {
   const { BASE_URL } = process.env;

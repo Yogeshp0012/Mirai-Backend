@@ -1,11 +1,22 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// initialize with your API key
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default transporter;
+async function sendEmail({ from, to, subject, html }) {
+  const { data, error } = await resend.emails.send({
+    from,
+    to,
+    subject,
+    html,
+  });
+
+  if (error) {
+    console.error('Resend email error:', error);
+    throw error;
+  }
+
+  return data;
+}
+
+export default sendEmail;

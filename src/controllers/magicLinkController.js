@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/userSchema.js';
-import transporter from '../utils/mailer.js';
+import sendEmail from '../utils/mailer.js';
 
 export const requestMagicLink = async (req, res) => {
   const { email } = req.body;
@@ -25,7 +25,8 @@ export const requestMagicLink = async (req, res) => {
 
     const link = `${process.env.BASE_URL}/auth/verify-magic?token=${token}`;
 
-    await transporter.sendMail({
+    await sendEmail({
+      from: process.env.EMAIL_FROM,
       to: email,
       subject: 'Your Magic Sign-In Link',
       html: `<p>Click to sign in: <a href="${link}">${link}</a></p>`, // todo: create an email template later

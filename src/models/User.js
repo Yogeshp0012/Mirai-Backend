@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+const { Schema } = mongoose;
+
+const UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -46,10 +48,11 @@ const userSchema = new mongoose.Schema(
     lastOnline: {
       type: Date,
     },
+    favorites: [{ type: Schema.ObjectId, ref: 'rooms' }],
   },
   { timestamps: true },
 );
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', UserSchema);
 
 export default User;

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const fileSchema = new mongoose.Schema(
+const FileSchema = new mongoose.Schema(
   {
     shield: {
       type: String,
@@ -37,5 +37,5 @@ const fileSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const File = mongoose.model('File', fileSchema);
+const File = mongoose.model('File', FileSchema);
 export default File;

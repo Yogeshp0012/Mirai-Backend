@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const authCodeSchema = new mongoose.Schema(
+const AuthCodeSchema = new mongoose.Schema(
   {
     expires: {
       type: Date,
@@ -31,6 +31,6 @@ const authCodeSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const AuthCode = mongoose.model('AuthCode', authCodeSchema);
+const AuthCode = mongoose.model('AuthCode', AuthCodeSchema);
 
 export default AuthCode;

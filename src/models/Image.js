@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const imageSchema = new mongoose.Schema(
+const ImageSchema = new mongoose.Schema(
   {
     shield: {
       type: String,
@@ -33,6 +33,6 @@ const imageSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Image = mongoose.model('Image', imageSchema);
+const Image = mongoose.model('Image', ImageSchema);
 
 export default Image;

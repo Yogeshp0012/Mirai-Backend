@@ -1,6 +1,6 @@
 import argon2 from 'argon2';
 import validator from 'validator';
-import User from '../models/userSchema.js';
+import User from '../models/User.js';
 
 // register user
 const registerUser = async (req, res) => {

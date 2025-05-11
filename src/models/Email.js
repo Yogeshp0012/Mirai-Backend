@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const emailSchema = new mongoose.Schema(
+const EmailSchema = new mongoose.Schema(
   {
     from: {
       type: String,
@@ -36,6 +36,6 @@ const emailSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Email = mongoose.model('Email', emailSchema);
+const Email = mongoose.model('Email', EmailSchema);
 
 export default Email;
